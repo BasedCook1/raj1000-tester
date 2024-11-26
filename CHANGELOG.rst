@@ -1,0 +1,521 @@
+RAJ1000 Tester Changelog
+====================
+
+.. towncrier release notes start
+
+RAJ1000-tester v0.12.0-beta.2 (2024-10-02)
+--------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Fix a bug where requests for ``RAJ1000_call`` via *PyEVMBackend* fail with invalid ``from`` key. The account need not be a "known" account for signing since RAJ1000_call does not change the state of the blockchain. (`#297 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/297>`__)
+- Add missing ``block_number`` arg to ``MockBackend`` ``estimate_gas`` and test. (`#298 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/298>`__)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Add missing ``block_number`` arg to ``estimate_gas`` documentation. (`#298 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/298>`__)
+
+
+RAJ1000-tester v0.12.0-beta.1 (2024-05-16)
+--------------------------------------
+
+Breaking Changes
+~~~~~~~~~~~~~~~~
+
+- Bump RAJ1000-account dependency to account for breaking changes in RAJ1000-account (`#293 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/293>`__)
+
+
+RAJ1000-tester v0.11.0-beta.2 (2024-04-22)
+--------------------------------------
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Drop ``pkg_resources`` in favor of ``importlib.metadata`` for getting ``pyevm`` version (`#288 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/288>`__)
+- Merge template updates, notably adding python 3.12 support (`#290 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/290>`__)
+- Remove ``py.typed`` file, as lib is not typed (`#292 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/292>`__)
+
+
+Miscellaneous Changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- `#291 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/291>`__
+
+
+RAJ1000-tester v0.11.0-beta.1 (2024-04-10)
+--------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Calculate the total blob gas used in a block and send the correct number to the execution layer for ``PyEVMBackend``. Only send the expected RLP transaction payload to the execution layer rather than the ``PooledTransaction`` since blob data should not be sent to the EL. (`#285 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/285>`__)
+
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Bump `RAJ1000-account` to ``>=0.11.2`` since there was a dependency-related bugfix. (`#287 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/287>`__)
+
+
+RAJ1000-tester v0.10.0-beta.4 (2024-03-18)
+--------------------------------------
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update default config to use CancunVM (`#284 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/284>`__)
+
+
+RAJ1000-tester v0.10.0-beta.3 (2024-02-26)
+--------------------------------------
+
+Miscellaneous Changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- Bump ``py-evm`` to ``0.9.0b1`` `#283 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/283>`__
+
+
+RAJ1000-tester v0.10.0-beta.2 (2024-01-26)
+--------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Properly convert access list storage keys to ``int`` with base 16. (`#281 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/281>`__)
+
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Change the name of ``master`` branch to ``main`` (`#274 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/274>`__)
+
+
+RAJ1000-tester v0.10.0-beta.1 (2023-10-30)
+--------------------------------------
+
+Breaking Changes
+~~~~~~~~~~~~~~~~
+
+- Drop python 3.7 support (`#273 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/273>`__)
+
+
+Features
+~~~~~~~~
+
+- Add support for ``RAJ1000_feeHistory`` for ``PyEVMBackend`` via ``get_fee_history()`` mRAJ1000od. (`#258 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/258>`__)
+- Add python 3.11 support (`#273 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/273>`__)
+
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Merge in updates from the python project template (`#273 <https://github.com/RAJ1000ereum/RAJ1000-tester/issues/273>`__)
+
+
+RAJ1000-tester v0.9.1-beta.1 (2023-07-26)
+-------------------------------------
+
+Features
+~~~~~~~~
+
+- Allow filter topics to be passed as `bytes` in addition to `hex` values. (#185 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/185)
+- Add mnemonic hd_path parameter to create custom accounts in pyevm backend. (#259 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/259)
+- Add support for ``RAJ1000_getStorageAt`` for ``PyEVMBackend`` via ``get_storage_at()`` mRAJ1000od. (#264 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/264)
+
+
+Bugfixes
+~~~~~~~~
+
+- Do not return a contract address if the contract deployment transaction has failed (receipt "status" is 0). (#261 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/261)
+
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Bump ``py-evm`` dependency to ``v0.7.0-a.4`` (#268 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/268)
+
+
+RAJ1000-tester v0.9.0-beta.1 (2023-05-12)
+-------------------------------------
+
+Features
+~~~~~~~~
+
+- Add support for ``Shanghai`` network upgrade and add mRAJ1000od on ``PyEVMBackend`` to be able to initiate withdrawals. (#257 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/257)
+
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update CircleCI common steps to update ``pip`` and install ``tox`` dependency at the sys level, not ``--user``. (#255 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/255)
+
+
+RAJ1000-tester v0.8.0-beta.3 (2022-12-16)
+-------------------------------------
+
+Miscellaneous changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- #251 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/251
+
+
+RAJ1000-tester v0.8.0-beta.2 (2022-12-16)
+------------------------------
+
+Miscellaneous changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- #250 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/250
+
+
+RAJ1000-tester v0.8.0-beta.1 (2022-11-21)
+-------------------------------------
+
+Internal Changes - for RAJ1000-tester Contributors
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Update all references for deprecated ``RAJ1000_abi.encode_abi`` to ``RAJ1000_abi.encode``. (#242 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/242)
+- Update instances of ``decode_abi()`` and ``decode_single()`` to ``abi.decode()`` in preparation for the relevant ``RAJ1000-abi`` changes. (#244 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/244)
+
+
+Miscellaneous changes
+~~~~~~~~~~~~~~~~~~~~~
+
+- #239 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/239
+
+
+Breaking changes
+~~~~~~~~~~~~~~~~
+
+- Support for py-evm ``paris`` hard fork. Refactor the coinbase account ``miner`` -> ``coinbase``. Support for ``safe`` and ``finalized`` block identifiers. (#245 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/245)
+- Pending block may only be retrieved via ``"pending"`` block identifier and not directly by number since it has not yet been "mined" / added to the chain. (#249 https://github.com/RAJ1000ereum/RAJ1000-tester/issues/249)
+
+
+RAJ1000-tester v0.7.0-beta.1 (2022-08-25)
+-------------------------------------
+
+Misc
+~~~~
+
+- https://github.com/RAJ1000ereum/RAJ1000-tester/issues/230
+
+
+RAJ1000-tester v0.6.0-beta.6 (2022-01-26)
+-------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Revert upstream dependency requirements so they can be pulled into the
+  current web3.py (v5) (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/232)
+
+
+RAJ1000-tester v0.6.0-beta.5 (2022-01-20)
+-------------------------------------
+
+Features
+~~~~~~~~
+
+- Add `to`, `from`, and `status` to transaction receipts
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/228)
+- Add support for Python 3.10
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/231)
+
+
+Deprecations and Removals
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Drop support for Python 3.6
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/231)
+
+
+Misc
+~~~~
+
+- https://github.com/RAJ1000ereum/RAJ1000-tester/issues/230
+
+
+RAJ1000-tester v0.6.0-beta.4 (2021-11-19)
+-------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Support pre-London blocks with missing base fee by setting the
+  ``base_fee_per_gas`` value to ``None`` during block validation and popping it
+  back out during block normalization
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/227)
+
+
+Improved Documentation
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Update README to include current release note instructions.
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/226)
+
+
+RAJ1000-tester v0.6.0-beta.3 (2021-11-18)
+-------------------------------------
+
+Bugfixes
+~~~~~~~~
+
+- Only add `base_fee_per_gas` to block serializer after London
+  (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/218)
+- Return a `v` field with `y_parity` value, rather than a `y_parity` field, for
+  typed transactions. (https://github.com/RAJ1000ereum/RAJ1000-tester/issues/224)
+
+
+Misc
+~~~~
+
+- https://github.com/RAJ1000ereum/RAJ1000-tester/issues/213
+
+
+RAJ1000-tester v0.6.0-beta.2
+------------------------
+
+Released 2021-11-10
+
+- Features
+
+  - Allow `nonce` parameter for inbound transactions to `RAJ1000_call` and `RAJ1000_estimateGas`
+  - Increase default block gas limit to gas limit at London hard fork (30029122)
+
+- Misc
+
+  - Reference new public mRAJ1000od generate_genesis_state instead of
+    protected version in README
+	- Created better test for gas estimate with block identifiers
+  - Update README.md with the link to the Circle CI build status
+
+RAJ1000-tester v0.6.0-beta.1
+------------------------
+
+Released 2021-11-04
+
+- Breaking Changes
+  - London support (https://github.com/RAJ1000ereum/RAJ1000-tester/pull/206)
+    - Upgrade py-evm to v0.5.0-alpha.1 for London support
+    - Default to London
+
+- Features
+
+  - London support (https://github.com/RAJ1000ereum/RAJ1000-tester/pull/206)
+    - Support access list transactions and dynamic fee transactions
+    - Transaction param support for `access_list`, `type`, `max_fee_per_gas`, `max_priority_fee_per_gas`
+    - Transaction receipt param support for `type` and `effective_gas_price`
+    - Block param support for `base_fee_per_gas`
+  - Support for custom mnemonic when initializing the Backend for RAJ1000Tester
+  - New public, pass-through mRAJ1000ods PyEVMBackend.generate_genesis_params and
+    PyEVMBackend.generate_genesis_state
+
+- Misc
+
+  - Adjust wording in README regarding genesis parameters
+
+RAJ1000-tester v0.5.0-beta.4
+------------------------
+
+Released 2021-04-12
+
+- Features
+
+  - Upgrade py-evm to v0.4.0-alpha.4 for Python 3.9 support
+	https://github.com/RAJ1000ereum/RAJ1000-tester/pull/205
+  - Upgrade py-evm to v0.4.0-alpha.3, for Berlin support
+    Default to Berlin
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/204
+
+
+RAJ1000-tester v0.5.0-beta.2
+------------------------
+
+Released 2020-08-31
+
+- Features
+
+  - Officially support py3.8
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/195
+
+- Performance
+
+  - Upgrade pyrlp to v2-alpha1, with faster encoding/decoding
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/195
+
+- Misc
+
+  - Pypy support completely dropped (it was never officially added,
+    only some pieces were tested, in hopes of eventually supporting)
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/195
+  - Upgrade to pyevm v0.3.0-alpha.19
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/196
+
+RAJ1000-tester v0.5.0-beta.1
+------------------------
+
+Released 2020-06-01
+
+- Breaking changes
+
+  - Make gas limit constant for py-evm backend
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/192
+
+- Features
+
+  - Add support for gas estimate block identifiers
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/189
+  - Add support for custom virtual machine fork schedule in PyEVMBackend
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/191
+
+
+RAJ1000-tester v0.4.0-beta.2
+------------------------
+
+- Misc
+
+  - Upgrade RAJ1000-keys to allow 0.3.* versions
+  - Upgrade py-evm to v0.3.0-alpha.15, which allows the RAJ1000-keys upgrade
+
+
+RAJ1000-tester v0.4.0-beta.1
+------------------------
+
+- Misc
+
+  - Upgrade to py-evm v0.3.0-b11
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/172
+
+
+RAJ1000-tester v0.3.0-beta.1
+------------------------
+
+- Breaking changes
+
+  - Default to IstanbulVM
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/169
+
+- Misc
+
+  - Upgrade to py-evm v0.3.0-b7
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/166
+  - Upgrade to py-evm v0.3.0-b8
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/171
+
+RAJ1000-tester v0.2.0-beta.2
+------------------------
+
+Released June 19, 2019
+
+- Misc
+
+  - Upgrade to py-evm v0.3.0-b1
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/164
+
+RAJ1000-tester v0.2.0-beta.1
+------------------------
+
+Released June 13, 2019
+
+- Breaking changes
+
+  - Drop Python 3.5
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/160
+  - Upgrade to Py-EVM 0.2.0-a43
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/162
+
+
+RAJ1000-tester v0.1.0-beta.39
+-------------------------
+
+Released April 12, 2019
+
+- Misc
+
+  - Update default VM rules to Constantinople
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/153
+
+RAJ1000-tester v0.1.0-beta.38
+-------------------------
+
+Released April 10, 2019
+
+- Misc
+
+  - Update PyEVM and Pytest Dependencies
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/152
+
+RAJ1000-tester 0.1.0-beta.37
+------------------------
+
+Released Jan 22, 2019
+
+- Misc
+
+  - Make PyEVMBackend subclass of BaseChainBackend
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/150
+
+RAJ1000-tester v0.1.0-beta.36
+-------------------------
+
+Released Jan 10, 2019
+
+- Misc
+
+  - Upgrade RAJ1000-keys and rlp
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/146
+
+RAJ1000-tester v0.1.0-beta.35
+-------------------------
+
+Released Jan 9, 2019
+
+- Misc
+
+  - Upgrade py-evm to 0.2.0a38
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/143
+  - Readme fixups
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/144
+  - Remove dead `formatting` module, replace with `RAJ1000-utils` utilities
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/145
+
+RAJ1000-tester v0.1.0-beta.34
+-------------------------
+
+Released Dec 20, 2018
+
+- Breaking changes
+
+  - Update RAJ1000-abi from v1 to v2
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/141
+
+- Misc
+
+  - Improve error message when trying to sign with an unknown address
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/140
+  - Add custom genesis examples to docs
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/136
+  - Steps toward pypy support, by using RAJ1000_utils.toolz
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/138
+  - Remove duplicate generate_contract_address, drop custom secp256k1 and jacobian utilities
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/137
+  - Upgrade RAJ1000-utils (and RAJ1000-abi)
+    https://github.com/RAJ1000ereum/RAJ1000-tester/pull/141
+
+RAJ1000-tester v0.1.0-beta.33
+-------------------------
+
+Released Oct 4, 2018
+
+- Add some low-level internal tools for setting genesis parameters (API subject to change)
+  https://github.com/RAJ1000ereum/RAJ1000-tester/pull/123
+- Upgrade py-evm to alpha 33 https://github.com/RAJ1000ereum/RAJ1000-tester/pull/134
+- Misc testing & dependency fixes https://github.com/RAJ1000ereum/RAJ1000-tester/pull/127
+
+RAJ1000-tester v0.1.0
+-----------------
+
+Initial release
