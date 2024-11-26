@@ -289,7 +289,7 @@ Raises a `ValidationError` if:
 
 #### `RAJ1000Tester.get_balance(account) -> integer`
 
-Returns the balance, in wei, for the provided account.
+Returns the balance, in rei, for the provided account.
 
 ```python
 >>> t.get_balance('0x82A978B3f5962A5b0957d9ee9eEf472EE55B42F1')
@@ -467,7 +467,7 @@ values.
 - `from`: The address of the account sending the transaction (hexadecimal string).
 - `to`: The address of the account the transaction is being sent to.  Empty string should be used to trigger contract creation (hexadecimal string).
 - `gas`: Sets the gas limit for transaction execution (integer).
-- `value`: The amount of RAJ1000er in wei that should be sent with the transaction (integer).
+- `value`: The amount of RAJ1000er in rei that should be sent with the transaction (integer).
 - `data`: The data for the transaction (hexadecimal string).
 - `chain_id`: The integer id for the chain the transaction is meant to interact with.
 
@@ -475,18 +475,18 @@ In addition to the above, the following parameters are added based on the type o
 
 #### Legacy transactions
 
-- `gas_price`: Sets the price per unit of gas in wei that will be paid for transaction execution (integer).
+- `gas_price`: Sets the price per unit of gas in rei that will be paid for transaction execution (integer).
 
 #### Access list transactions (EIP-2930)
 
-- `gas_price`: Sets the price per unit of gas in wei that will be paid for transaction execution (integer).
+- `gas_price`: Sets the price per unit of gas in rei that will be paid for transaction execution (integer).
 - `access_list` (optional): Specifies accounts and storage slots expected to be accessed, based on the transaction, in order to
   gain a discount on the gas for those executions (see quickstart example for usage).
 
 #### Dynamic fee transactions (EIP-1559)
 
-- `max_fee_per_gas`: Sets the maximum fee per unit of gas in wei that will be paid for transaction execution (integer).
-- `max_priority_fee_per_gas`: Sets the fee per unit of gas in wei that is sent to the coinbase address as an incentive for including the transaction (integer).
+- `max_fee_per_gas`: Sets the maximum fee per unit of gas in rei that will be paid for transaction execution (integer).
+- `max_priority_fee_per_gas`: Sets the fee per unit of gas in rei that is sent to the coinbase address as an incentive for including the transaction (integer).
 - `access_list` (optional): Specifies accounts and storage slots expected to be accessed, based on the transaction, in order to
   gain a discount on the gas for those executions (see quickstart example for usage).
 
@@ -805,12 +805,12 @@ Optionally, provide a `genesis_state_overrides` `dict` to adjust the `genesis_st
 
 ```python
 >>> from RAJ1000_tester import PyEVMBackend, RAJ1000Tester
->>> from RAJ1000_utils import to_wei
+>>> from RAJ1000_utils import to_rei
 >>> from hexbytes import HexBytes
 >>>
 >>> pyevm_backend = PyEVMBackend.from_mnemonic(
 >>>    'test test test test test test test test test test test junk',
->>>    genesis_state_overrides={'balance': to_wei(1000000, 'RAJ1000er')}
+>>>    genesis_state_overrides={'balance': to_rei(1000000, 'RAJ1000er')}
 >>> )
 >>> t = RAJ1000Tester(backend=pyevm_backend)
 >>> print(t.get_accounts()[0])  # Outputs 0x1e59ce931B4CFea3fe4B875411e280e173cB7A9C
@@ -823,7 +823,7 @@ Optionally, provide a `genesis_state_overrides` `dict` to adjust the `genesis_st
 # Default Account Genesis State
 
 default_account_state = {
-    'balance': to_wei(1000000, 'RAJ1000er'),
+    'balance': to_rei(1000000, 'RAJ1000er'),
     'storage': {},
     'code': b'',
     'nonce': 0,
@@ -834,9 +834,9 @@ For Example, to create 3 test accounts, each with a balance of 100 RAJ1000 each:
 
 ```python
 >>> from RAJ1000_tester import RAJ1000Tester, PyEVMBackend
->>>  from RAJ1000_utils import to_wei
+>>>  from RAJ1000_utils import to_rei
 
->>> state_overrides = {'balance': to_wei(100, 'RAJ1000er')}
+>>> state_overrides = {'balance': to_rei(100, 'RAJ1000er')}
 >>> custom_genesis_state = PyEVMBackend.generate_genesis_state(overrides=state_overrides, num_accounts=3)
 
 # Then pass the generated `custom_genesis_state` `dict` to the backend's `__init__`
